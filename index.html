@@ -236,6 +236,17 @@
       margin-top: 30px;
       padding-top: 20px;
     }
+    .cookie-consent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 192, 203, 0.95);
+      padding: 15px 0;
+      box-shadow: 0 -4px 30px rgba(255, 105, 180, 0.1);
+      border-top: 1px solid rgba(255, 105, 180, 0.2);
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -379,6 +390,33 @@
       </div>
     </div>
   </footer>
+
+<div id="cookieConsent" class="cookie-consent">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>เว็บไซต์นี้ใช้คุกกี้เพื่อมอบประสบการณ์การใช้งานที่ดีที่สุดให้กับคุณ <a href="#">อ่านเพิ่มเติม</a></p>
+        <button class="btn btn-primary" id="acceptCookies">ยอมรับ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var cookieConsent = document.getElementById('cookieConsent');
+    var acceptCookies = document.getElementById('acceptCookies');
+
+    if (!localStorage.getItem('cookiesAccepted')) {
+      cookieConsent.style.display = 'block';
+    }
+
+    acceptCookies.addEventListener('click', function() {
+      localStorage.setItem('cookiesAccepted', 'true');
+      cookieConsent.style.display = 'none';
+    });
+  });
+</script>
 
   <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
